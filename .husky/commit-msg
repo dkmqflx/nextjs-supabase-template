@@ -1,2 +1,2 @@
-echo "🚦 commit이 규칙에 맞게 작성되었는지 확인합니다."
+echo "🚦 Checks if the commit is written according to the rules."
 pnpx commitlint --edit $1
