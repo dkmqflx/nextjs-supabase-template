@@ -1,3 +1,5 @@
-# npm test
 
 
+echo "🚦 Checks linting before committing."
+
+npx lint-staged
