@@ -1,0 +1,2 @@
+echo "🚦 commit이 규칙에 맞게 작성되었는지 확인합니다."
+pnpx commitlint --edit $1
