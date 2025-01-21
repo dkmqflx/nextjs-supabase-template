@@ -1,6 +1,7 @@
 import type { BaseResponse } from "./types";
 
 import { BASE_URL } from "../constants/baseUrl";
+import { z, ZodSchema } from "zod";
 
 class ApiClient {
   private baseUrl: string;
@@ -10,7 +11,8 @@ class ApiClient {
   }
 
   private async handleResponse<T>(
-    response: Response
+    response: Response,
+    schema?: ZodSchema<T>
   ): Promise<BaseResponse<T>> {
     if (!response.ok) {
       throw new Error(`HTTP error. Status Code: ${response.status}`);
@@ -19,8 +21,18 @@ class ApiClient {
     try {
       const result = await response.json();
 
+      // Validate response using Zod
+      if (schema) {
+        schema.parse(result.data);
+      }
+
       return result;
     } catch (error) {
+      if (error instanceof z.ZodError) {
+        console.warn("Validation error:", error.errors);
+        throw new Error("API response validation failed");
+      }
+
       console.warn("Error parsing JSON response:", error);
       throw new Error("Error parsing JSON response");
     }
@@ -44,6 +56,7 @@ class ApiClient {
   private async request<T>(
     method: string,
     endpoint: string,
+    schema?: ZodSchema<T>,
     options?: RequestInit,
     body?: Record<string, unknown>,
     queryParams?: Record<string, string | number | boolean>
@@ -60,35 +73,45 @@ class ApiClient {
       ...options,
     });
 
-    return this.handleResponse<T>(response);
+    return this.handleResponse<T>(response, schema);
   }
 
   public get<T>(
     endpoint: string,
+    schema: ZodSchema<T>,
     queryParams?: Record<string, string | number | boolean>,
     options?: RequestInit
   ) {
-    return this.request<T>("GET", endpoint, options, undefined, queryParams);
+    return this.request<T>(
+      "GET",
+      endpoint,
+      schema,
+      options,
+      undefined,
+      queryParams
+    );
   }
 
   public post<T, TData extends Record<string, unknown>>(
     endpoint: string,
+    schema: ZodSchema<T>,
     body: TData,
     options?: RequestInit
   ) {
-    return this.request<T>("POST", endpoint, options, body);
+    return this.request<T>("POST", endpoint, schema, options, body);
   }
 
   public put<T, TData extends Record<string, unknown>>(
     endpoint: string,
+    schema: ZodSchema<T>,
     body: TData,
     options?: RequestInit
   ) {
-    return this.request<T>("PUT", endpoint, options, body);
+    return this.request<T>("PUT", endpoint, schema, options, body);
   }
 
   public delete<T>(endpoint: string, options?: RequestInit) {
-    return this.request<T>("DELETE", endpoint, options);
+    return this.request<T>("DELETE", endpoint, undefined, options);
   }
 }
 

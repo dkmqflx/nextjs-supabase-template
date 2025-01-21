@@ -1,5 +1,4 @@
-export type userResponse = {
-  id: number;
-  name: string;
-  email: string;
-};
+import { z } from "zod";
+import { userSchema } from "../model/schema";
+
+export type userResponse = z.infer<typeof userSchema>;
