@@ -1,9 +1,8 @@
 "use client";
 
 import { useSuspenseQuery } from "@tanstack/react-query";
-import React from "react";
 
-const PrefetchQuery = () => {
+export const PrefetchQuery = () => {
   const { data } = useSuspenseQuery({
     queryKey: ["todos"],
     queryFn: async () => {
@@ -29,5 +28,3 @@ const PrefetchQuery = () => {
     </div>
   );
 };
-
-export default PrefetchQuery;
