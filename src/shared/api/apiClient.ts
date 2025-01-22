@@ -15,7 +15,11 @@ class ApiClient {
     schema?: ZodSchema<T>
   ): Promise<BaseResponse<T>> {
     if (!response.ok) {
-      throw new Error(`HTTP error. Status Code: ${response.status}`);
+      const result = await response.json();
+      console.log("response", response);
+      throw new Error(
+        `${result?.message ?? `HTTP error. Status Code: ${response.status}`}`
+      );
     }
 
     try {
@@ -78,7 +82,7 @@ class ApiClient {
 
   public get<T>(
     endpoint: string,
-    schema: ZodSchema<T>,
+    schema?: ZodSchema<T>,
     queryParams?: Record<string, string | number | boolean>,
     options?: RequestInit
   ) {
@@ -92,10 +96,10 @@ class ApiClient {
     );
   }
 
-  public post<T, TData extends Record<string, unknown>>(
+  public post<T, TData extends Record<string, unknown> | undefined>(
     endpoint: string,
-    schema: ZodSchema<T>,
     body: TData,
+    schema?: ZodSchema<T>,
     options?: RequestInit
   ) {
     return this.request<T>("POST", endpoint, schema, options, body);
@@ -103,8 +107,8 @@ class ApiClient {
 
   public put<T, TData extends Record<string, unknown>>(
     endpoint: string,
-    schema: ZodSchema<T>,
     body: TData,
+    schema?: ZodSchema<T>,
     options?: RequestInit
   ) {
     return this.request<T>("PUT", endpoint, schema, options, body);

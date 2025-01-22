@@ -4,8 +4,9 @@ import Link from "next/link";
 export default function Home() {
   return (
     <div>
-      <Button>Shadcn Button</Button>
+      <Button>123</Button>
       <Link href="/prefetch">prefetch</Link>
+      <Link href="/error-handling">error-handling</Link>
     </div>
   );
 }

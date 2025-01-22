@@ -1,14 +1,34 @@
 import {
+  MutationCache,
+  QueryCache,
   QueryClient,
   defaultShouldDehydrateQuery,
   isServer,
 } from "@tanstack/react-query";
 
-/**
- *
- * @link https://tanstack.com/query/v5/docs/framework/react/guides/advanced-ssr#initial-setup
- * @link https://tanstack.com/query/v5/docs/framework/react/guides/advanced-ssr#streaming-with-server-components
- */
+const mutationCache = new MutationCache({
+  onError: (error) => {
+    console.error(error);
+
+    if (!isServer) {
+      import("sonner").then(({ toast }) => toast.error(error.message));
+    }
+  },
+});
+
+const queryCache = new QueryCache({
+  onError: (error) => {
+    console.error(error);
+
+    /**
+     * error handling for useQuery
+     */
+    if (!isServer) {
+      import("sonner").then(({ toast }) => toast.error(error.message));
+    }
+  },
+});
+
 function makeQueryClient() {
   return new QueryClient({
     defaultOptions: {
@@ -22,6 +42,8 @@ function makeQueryClient() {
           query.state.status === "pending",
       },
     },
+    queryCache,
+    mutationCache,
   });
 }
 
