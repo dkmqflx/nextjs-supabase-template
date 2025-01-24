@@ -1,7 +1,9 @@
 import type { Metadata } from 'next';
 import localFont from 'next/font/local';
 
+import { SidebarProvider } from '@/shared/ui/sidebar';
 import { Toaster } from '@/shared/ui/sonner';
+import { AppSidebar } from '@/widgets/sidebar';
 
 import '../globals.css';
 import QueryErrorBoundary from '../providers/QueryErrorBoundary';
@@ -32,9 +34,14 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <QueryProviders>
-          <QueryErrorBoundary>{children}</QueryErrorBoundary>
+          <QueryErrorBoundary>
+            <SidebarProvider>
+              <AppSidebar />
+              {children}
+              <Toaster richColors />
+            </SidebarProvider>
+          </QueryErrorBoundary>
         </QueryProviders>
-        <Toaster richColors />
       </body>
     </html>
   );
