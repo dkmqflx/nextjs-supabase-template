@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "next lint",
     "prepare": "husky",
-    "ui": "pnpm dlx shadcn@latest add"
+    "ui": "pnpm dlx shadcn@latest add",
+    "generate-types": "npx supabase gen types typescript --project-id lpsmxngkcnvhqzcmfmnq --schema public > database.types.ts"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
@@ -17,6 +18,8 @@
   },
   "dependencies": {
     "@radix-ui/react-slot": "^1.1.1",
+    "@supabase/ssr": "^0.5.2",
+    "@supabase/supabase-js": "^2.48.0",
     "@tanstack/react-query": "^5.64.1",
     "@tanstack/react-query-devtools": "^5.64.1",
     "class-variance-authority": "^0.7.1",
