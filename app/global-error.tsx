@@ -1,18 +1,13 @@
-"use client";
-import { useEffect } from "react";
+'use client';
+
+import { useEffect } from 'react';
 
 /**
  * This component is used to handle unexpected error.
  * It is only enabled in production.
  * In development, error overlay will show instead.
  */
-export default function GlobalError({
-  error,
-  reset,
-}: {
-  error: Error & { digest?: string };
-  reset: () => void;
-}) {
+export default function GlobalError({ error, reset }: { error: Error & { digest?: string }; reset: () => void }) {
   useEffect(() => {
     // Log the error to an error reporting service
     console.error(error);
