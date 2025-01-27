@@ -1,14 +1,9 @@
 {
-  "extends": [
-    "next/core-web-vitals",
-    "next/typescript",
-    "plugin:@tanstack/query/recommended",
-    "prettier"
-  ],
+  "extends": ["next/core-web-vitals", "next/typescript", "plugin:@tanstack/query/recommended", "prettier"],
   // rules for fsd
   "rules": {
     "import/no-restricted-paths": [
-      "warn",
+      "error",
       {
         "zones": [
           {
@@ -21,12 +16,7 @@
           },
           {
             "target": "./src/shared",
-            "from": [
-              "./src/app",
-              "./src/widgets",
-              "./src/features",
-              "./src/entities"
-            ]
+            "from": ["./src/app", "./src/widgets", "./src/features", "./src/entities"]
           }
         ]
       }

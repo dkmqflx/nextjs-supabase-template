@@ -4,7 +4,7 @@ import { Grid } from 'lucide-react';
 import { List } from 'lucide-react';
 import { Search } from 'lucide-react';
 
-import { VIEW_MODE, useStorageStore } from '../model/store';
+import { VIEW_MODE, useStorageStore } from '../../../entities/storage/model/store';
 
 const FileSearch = () => {
   const { viewMode, toggleViewMode } = useStorageStore();

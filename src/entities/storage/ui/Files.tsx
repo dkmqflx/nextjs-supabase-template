@@ -1,8 +1,7 @@
 'use client';
 
-import { VIEW_MODE, useStorageStore } from '@/features/storage/model/store';
-
 import { useGetFileMetadata } from '../api/queries';
+import { VIEW_MODE, useStorageStore } from '../model/store';
 import Grid from './Grid';
 import Table from './Table';
 
