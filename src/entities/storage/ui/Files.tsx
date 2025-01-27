@@ -2,12 +2,12 @@
 
 import { VIEW_MODE, useStorageStore } from '@/features/storage/model/store';
 
-import { useGetFiles } from '../api/queries';
+import { useGetFileMetadata } from '../api/queries';
 import Grid from './Grid';
 import Table from './Table';
 
 const Files = () => {
-  const { data: files } = useGetFiles();
+  const { data: files } = useGetFileMetadata();
   const { viewMode } = useStorageStore();
 
   return (

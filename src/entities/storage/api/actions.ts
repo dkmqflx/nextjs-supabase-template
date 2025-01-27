@@ -2,12 +2,14 @@
 
 import { createSupabaseServerClient } from '@/shared/lib/supabaseServer';
 
-export const searchFiles = async (search: string = '') => {
+export const getFileMetadata = async (search: string = '') => {
   const supabase = await createSupabaseServerClient();
 
-  const { data, error } = await supabase.storage.from(process.env.NEXT_PUBLIC_STORAGE_BUCKET!).list('', {
-    search,
-  });
+  const { data, error } = await supabase
+    .from('file_metadata')
+    .select('*')
+    .like('originalName', `%${search}%`)
+    .order('lastModified', { ascending: true });
 
   if (error) {
     console.error(error);

@@ -1,10 +1,10 @@
 import { useSuspenseQuery } from '@tanstack/react-query';
 
-import { searchFiles } from './actions';
+import { getFileMetadata } from './actions';
 
-export const useGetFiles = (search: string = '') => {
+export const useGetFileMetadata = (search: string = '') => {
   return useSuspenseQuery({
     queryKey: ['files', search],
-    queryFn: () => searchFiles(search),
+    queryFn: () => getFileMetadata(search),
   });
 };
