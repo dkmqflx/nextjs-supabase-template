@@ -12,5 +12,7 @@ export const getFileMetadata = async (client: TypedSupabaseClient, search: strin
     throw error;
   }
 
+  console.log('data', data);
+
   return data;
 };

@@ -1,4 +1,4 @@
-import { MutationCache, QueryCache, QueryClient, defaultShouldDehydrateQuery, isServer } from '@tanstack/react-query';
+import { MutationCache, QueryCache, QueryClient, isServer } from '@tanstack/react-query';
 
 const mutationCache = new MutationCache({
   onError: (error) => {
@@ -23,16 +23,16 @@ const queryCache = new QueryCache({
   },
 });
 
-function makeQueryClient() {
+export function makeQueryClient() {
   return new QueryClient({
     defaultOptions: {
       queries: {
-        staleTime: 60 * 1000,
+        // staleTime: 60 * 1000,
       },
-      dehydrate: {
-        // include pending queries in dehydration
-        shouldDehydrateQuery: (query) => defaultShouldDehydrateQuery(query) || query.state.status === 'pending',
-      },
+      // dehydrate: {
+      //   // include pending queries in dehydration
+      //   shouldDehydrateQuery: (query) => defaultShouldDehydrateQuery(query) || query.state.status === 'pending',
+      // },
     },
     queryCache,
     mutationCache,
@@ -42,6 +42,8 @@ function makeQueryClient() {
 let browserQueryClient: QueryClient | undefined = undefined;
 
 export function getQueryClient() {
+  console.log('isServer', isServer);
+
   if (isServer) {
     // Server: always make a new query client
     return makeQueryClient();
