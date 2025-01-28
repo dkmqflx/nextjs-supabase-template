@@ -1,15 +1,11 @@
-'use server';
+import type { TypedSupabaseClient } from '@/shared/lib/utils';
 
-import { createSupabaseServerClient } from '@/shared/lib/supabaseServer';
-
-export const getFileMetadata = async (search: string = '') => {
-  const supabase = await createSupabaseServerClient();
-
-  const { data, error } = await supabase
+export const getFileMetadata = async (client: TypedSupabaseClient, search: string = '') => {
+  const { data, error } = await client
     .from('file_metadata')
     .select('*')
     .like('originalName', `%${search}%`)
-    .order('lastModified', { ascending: true });
+    .order('lastModified', { ascending: false });
 
   if (error) {
     console.error(error);

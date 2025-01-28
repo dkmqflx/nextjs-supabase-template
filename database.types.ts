@@ -9,6 +9,30 @@ export type Json =
 export type Database = {
   public: {
     Tables: {
+      file_metadata: {
+        Row: {
+          id: number
+          lastModified: string
+          originalName: string
+          size: number
+          storageId: string
+        }
+        Insert: {
+          id?: number
+          lastModified: string
+          originalName: string
+          size: number
+          storageId: string
+        }
+        Update: {
+          id?: number
+          lastModified?: string
+          originalName?: string
+          size?: number
+          storageId?: string
+        }
+        Relationships: []
+      }
       user: {
         Row: {
           created_at: string

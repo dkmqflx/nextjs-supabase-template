@@ -2,13 +2,16 @@
 
 import { useCallback } from 'react';
 
+import { useSupabaseBrowserClient } from '@/shared/hooks/useSupabaseBrowserClient';
 import { Upload } from 'lucide-react';
 import { useDropzone } from 'react-dropzone';
 
-import { useUploadFile } from '../api/query';
+import { useUploadFile } from '../api/queries';
 
 const FileUpload = () => {
-  const { mutate: uploadFile } = useUploadFile();
+  const client = useSupabaseBrowserClient();
+
+  const { mutate: uploadFile } = useUploadFile({ client });
 
   const onDrop = useCallback(
     async (acceptedFiles: File[]) => {

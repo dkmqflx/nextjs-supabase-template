@@ -1,28 +1,28 @@
-import { Files } from '@/entities/storage';
-import { getFileMetadata } from '@/entities/storage/api/actions';
+import { cookies } from 'next/headers';
+
+import { useGetFileMetadata } from '@/entities/storage';
 import { FileUpload } from '@/features/storage';
 import FileSearch from '@/features/storage/ui/FileSearch';
+import { useSupabaseServerClient } from '@/shared/hooks/useSupabaseServerClient';
 import { getQueryClient } from '@/shared/lib/get-query-client';
+import { Files } from '@/widgets/storage';
 import { dehydrate } from '@tanstack/react-query';
-import { HydrationBoundary } from 'node_modules/@tanstack/react-query/build/modern/HydrationBoundary';
+import { HydrationBoundary } from '@tanstack/react-query';
 
-const StoragePage = async () => {
+const StoragePage = () => {
   const queryClient = getQueryClient();
+  const cookieStore = cookies();
 
-  await queryClient.prefetchQuery({
-    queryKey: ['files', ''],
-    queryFn: () => getFileMetadata(''),
-  });
+  const client = useSupabaseServerClient(cookieStore);
 
-  const dehydratedState = dehydrate(queryClient);
+  queryClient.prefetchQuery(useGetFileMetadata({ client, search: '' }));
 
   return (
-    <HydrationBoundary state={dehydratedState}>
+    <HydrationBoundary state={dehydrate(queryClient)}>
       <div className="min-h-screen w-full bg-gray-100 p-8">
         <div className="mx-auto max-w-6xl overflow-hidden rounded-lg bg-white shadow-xl">
           <div className="p-8">
             <h1 className="mb-8 text-3xl font-bold text-gray-900">File Management</h1>
-
             <FileUpload />
 
             <FileSearch />

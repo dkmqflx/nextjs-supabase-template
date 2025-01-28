@@ -1,4 +1,6 @@
+import { SupabaseClient } from '@supabase/supabase-js';
 import { type ClassValue, clsx } from 'clsx';
+import type { Database } from 'database.types';
 import { twMerge } from 'tailwind-merge';
 
 export function cn(...inputs: ClassValue[]) {
@@ -17,3 +19,5 @@ export const formatFileSize = (bytes: number): string => {
 
   return `${size} ${sizes[i]}`;
 };
+
+export type TypedSupabaseClient = SupabaseClient<Database>;

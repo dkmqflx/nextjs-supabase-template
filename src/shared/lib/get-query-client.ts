@@ -1,17 +1,11 @@
-import {
-  MutationCache,
-  QueryCache,
-  QueryClient,
-  defaultShouldDehydrateQuery,
-  isServer,
-} from "@tanstack/react-query";
+import { MutationCache, QueryCache, QueryClient, defaultShouldDehydrateQuery, isServer } from '@tanstack/react-query';
 
 const mutationCache = new MutationCache({
   onError: (error) => {
     console.error(error);
 
     if (!isServer) {
-      import("sonner").then(({ toast }) => toast.error(error.message));
+      import('sonner').then(({ toast }) => toast.error(error.message));
     }
   },
 });
@@ -24,7 +18,7 @@ const queryCache = new QueryCache({
      * error handling for useQuery
      */
     if (!isServer) {
-      import("sonner").then(({ toast }) => toast.error(error.message));
+      import('sonner').then(({ toast }) => toast.error(error.message));
     }
   },
 });
@@ -37,9 +31,7 @@ function makeQueryClient() {
       },
       dehydrate: {
         // include pending queries in dehydration
-        shouldDehydrateQuery: (query) =>
-          defaultShouldDehydrateQuery(query) ||
-          query.state.status === "pending",
+        shouldDehydrateQuery: (query) => defaultShouldDehydrateQuery(query) || query.state.status === 'pending',
       },
     },
     queryCache,

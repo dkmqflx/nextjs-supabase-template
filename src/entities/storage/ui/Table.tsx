@@ -2,9 +2,9 @@ import { formatFileSize } from '@/shared/lib/utils';
 import dayjs from 'dayjs';
 import { FileIcon, ImageIcon, Trash2 } from 'lucide-react';
 
-import { FileMetadata } from '../api/types';
+import type { FilesType } from '../api/types';
 
-const Table = ({ files }: { files: FileMetadata[] }) => {
+const Table = ({ files, onDelete }: { files: FilesType[]; onDelete: (storageId: string) => void }) => {
   return (
     <div className="overflow-x-auto">
       <table className="min-w-full divide-y divide-gray-200">
@@ -38,7 +38,7 @@ const Table = ({ files }: { files: FileMetadata[] }) => {
               </td>
 
               <td className="whitespace-nowrap px-6 py-4 text-right text-sm font-medium">
-                <button className="text-red-600 hover:text-red-900">
+                <button onClick={() => onDelete(file.storageId)} className="text-red-600 hover:text-red-900">
                   <Trash2 className="h-5 w-5" />
                 </button>
               </td>

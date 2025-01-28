@@ -2,9 +2,9 @@ import { formatFileSize } from '@/shared/lib/utils';
 import dayjs from 'dayjs';
 import { FileIcon, ImageIcon, Trash2 } from 'lucide-react';
 
-import { FileMetadata } from '../api/types';
+import type { FilesType } from '../api/types';
 
-const Grid = ({ files }: { files: FileMetadata[] }) => {
+const Grid = ({ files, onDelete }: { files: FilesType[]; onDelete: (storageId: string) => void }) => {
   return (
     <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
       {files.map((file) => (
@@ -15,7 +15,7 @@ const Grid = ({ files }: { files: FileMetadata[] }) => {
             ) : (
               <FileIcon className="mr-3 h-5 w-5 text-gray-400" />
             )}
-            <button className="text-red-600 hover:text-red-900">
+            <button onClick={() => onDelete(file.storageId)} className="text-red-600 hover:text-red-900">
               <Trash2 className="h-5 w-5" />
             </button>
           </div>
