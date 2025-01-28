@@ -4,11 +4,12 @@ import { useGetFileMetadata } from '@/entities/storage';
 import { FileUpload } from '@/features/storage';
 import FileSearch from '@/features/storage/ui/FileSearch';
 import { useSupabaseServerClient } from '@/shared/hooks/useSupabaseServerClient';
+import { getQueryClient } from '@/shared/lib/get-query-client';
 import { Files } from '@/widgets/storage';
-import { HydrationBoundary, QueryClient, dehydrate } from '@tanstack/react-query';
+import { HydrationBoundary, dehydrate } from '@tanstack/react-query';
 
 const StoragePage = () => {
-  const queryClient = new QueryClient();
+  const queryClient = getQueryClient();
 
   const cookieStore = cookies();
 

@@ -8,7 +8,7 @@ import { AppSidebar } from '@/widgets/sidebar';
 
 import '../globals.css';
 import QueryErrorBoundary from '../providers/QueryErrorBoundary';
-import QueryProviders from '../providers/QueryProvider';
+import QueryProvider from '../providers/QueryProvider';
 
 const geistSans = localFont({
   src: '../fonts/GeistVF.woff',
@@ -34,7 +34,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        <QueryProviders>
+        <QueryProvider>
           <QueryErrorBoundary>
             <Suspense>
               <SidebarProvider>
@@ -44,7 +44,7 @@ export default function RootLayout({
               </SidebarProvider>
             </Suspense>
           </QueryErrorBoundary>
-        </QueryProviders>
+        </QueryProvider>
       </body>
     </html>
   );

@@ -1,49 +1,49 @@
-import { MutationCache, QueryCache, QueryClient, isServer } from '@tanstack/react-query';
-
-const mutationCache = new MutationCache({
-  onError: (error) => {
-    console.error(error);
-
-    if (!isServer) {
-      import('sonner').then(({ toast }) => toast.error(error.message));
-    }
-  },
-});
-
-const queryCache = new QueryCache({
-  onError: (error) => {
-    console.error(error);
-
-    /**
-     * error handling for useQuery
-     */
-    if (!isServer) {
-      import('sonner').then(({ toast }) => toast.error(error.message));
-    }
-  },
-});
+import {
+  MutationCache,
+  QueryCache,
+  QueryClient,
+  defaultShouldDehydrateMutation,
+  defaultShouldDehydrateQuery,
+  isServer,
+} from '@tanstack/react-query';
 
 export function makeQueryClient() {
   return new QueryClient({
     defaultOptions: {
       queries: {
-        // staleTime: 60 * 1000,
+        staleTime: 60 * 1000,
       },
-      // dehydrate: {
-      //   // include pending queries in dehydration
-      //   shouldDehydrateQuery: (query) => defaultShouldDehydrateQuery(query) || query.state.status === 'pending',
-      // },
+      dehydrate: {
+        shouldDehydrateQuery: (query) => defaultShouldDehydrateQuery(query) || query.state.status === 'pending',
+        shouldDehydrateMutation: (query) => defaultShouldDehydrateMutation(query) || query.state.status === 'pending',
+      },
     },
-    queryCache,
-    mutationCache,
+    mutationCache: new MutationCache({
+      onError: (error) => {
+        console.error(error);
+        if (!isServer) {
+          import('sonner').then(({ toast }) => toast.error(error.message));
+        }
+      },
+    }),
+
+    queryCache: new QueryCache({
+      onError: (error) => {
+        console.error(error);
+        /**
+         * error handling for useQuery
+         */
+        if (!isServer) {
+          import('sonner').then(({ toast }) => toast.error(error.message));
+        }
+      },
+    }),
   });
 }
 
 let browserQueryClient: QueryClient | undefined = undefined;
 
 export function getQueryClient() {
-  console.log('isServer', isServer);
-
   if (isServer) {
     // Server: always make a new query client
     return makeQueryClient();
