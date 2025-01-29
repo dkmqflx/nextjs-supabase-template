@@ -1,9 +1,10 @@
 import type { TypedSupabaseClient } from '@/shared/lib/utils';
+import { keepPreviousData } from '@tanstack/react-query';
 
 import { getFileMetadata } from './actions';
 
 export const useGetFileMetadata = ({ client, search = '' }: { client: TypedSupabaseClient; search: string }) => {
-  const queryKey = ['files'];
+  const queryKey = ['files', search];
 
   const queryFn = async () => {
     const data = await getFileMetadata(client, search);
@@ -13,5 +14,6 @@ export const useGetFileMetadata = ({ client, search = '' }: { client: TypedSupab
   return {
     queryKey,
     queryFn,
+    placeholderData: keepPreviousData,
   };
 };

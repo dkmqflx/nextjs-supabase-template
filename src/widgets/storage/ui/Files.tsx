@@ -10,12 +10,10 @@ import { useSuspenseQuery } from '@tanstack/react-query';
 
 const Files = () => {
   const client = useSupabaseBrowserClient();
+  const { viewMode, debouncedSearch } = useStorageStore();
 
-  const { data: files } = useSuspenseQuery(useGetFileMetadata({ client, search: '' }));
-
+  const { data: files } = useSuspenseQuery(useGetFileMetadata({ client, search: debouncedSearch }));
   const { mutate: deleteFile } = useDeleteFile({ client });
-
-  const { viewMode } = useStorageStore();
 
   return (
     <div className="flex flex-col">

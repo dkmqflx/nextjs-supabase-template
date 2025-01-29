@@ -1,18 +1,34 @@
 import type { TypedSupabaseClient } from '@/shared/lib/utils';
 
-export const getFileMetadata = async (client: TypedSupabaseClient, search: string = '') => {
-  const { data, error } = await client
-    .from('file_metadata')
-    .select('*')
-    .like('originalName', `%${search}%`)
-    .order('lastModified', { ascending: false });
+import type { FilesType } from './types';
+
+type RawFileType = {
+  id: number;
+  originalname: string;
+  size: number;
+  storageid: string;
+  lastmodified: string;
+};
+
+const transformToCamelCase = (file: RawFileType): FilesType => ({
+  id: file.id,
+  originalName: file.originalname,
+  size: file.size,
+  storageId: file.storageid,
+  lastModified: file.lastmodified,
+});
+
+// Database Function
+export const getFileMetadata = async (client: TypedSupabaseClient, search: string = ''): Promise<FilesType[]> => {
+  // @ts-expect-error: Supabase RPC type mismatch
+  const { data, error } = await client.rpc('search_file_metadata', {
+    search_term: search,
+  });
 
   if (error) {
     console.error(error);
     throw error;
   }
 
-  console.log('data', data);
-
-  return data;
+  return (data as RawFileType[]).map(transformToCamelCase);
 };

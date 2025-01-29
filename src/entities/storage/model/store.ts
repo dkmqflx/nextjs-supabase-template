@@ -1,21 +1,29 @@
+import debounce from 'lodash.debounce';
 import { create } from 'zustand';
 
-export const VIEW_MODE = {
-  LIST: 'list',
-  GRID: 'grid',
-} as const;
+export enum VIEW_MODE {
+  LIST = 'list',
+  GRID = 'grid',
+}
 
-type ViewMode = (typeof VIEW_MODE)[keyof typeof VIEW_MODE];
+const DEBOUNCE_TIME = 500;
 
-type StorageStore = {
-  viewMode: ViewMode;
+type StorageState = {
+  viewMode: VIEW_MODE;
+
+  debouncedSearch: string;
   toggleViewMode: () => void;
+  setDebouncedSearch: (query: string) => void;
 };
 
-export const useStorageStore = create<StorageStore>((set) => ({
+export const useStorageStore = create<StorageState>((set) => ({
   viewMode: VIEW_MODE.LIST,
+
+  debouncedSearch: '',
   toggleViewMode: () =>
     set((state) => ({
       viewMode: state.viewMode === VIEW_MODE.LIST ? VIEW_MODE.GRID : VIEW_MODE.LIST,
     })),
+
+  setDebouncedSearch: debounce((query: string) => set({ debouncedSearch: query }), DEBOUNCE_TIME),
 }));

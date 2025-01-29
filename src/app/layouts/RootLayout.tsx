@@ -1,6 +1,5 @@
 import type { Metadata } from 'next';
 import localFont from 'next/font/local';
-import { Suspense } from 'react';
 
 import { SidebarProvider } from '@/shared/ui/sidebar';
 import { Toaster } from '@/shared/ui/sonner';
@@ -36,13 +35,11 @@ export default function RootLayout({
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <QueryProvider>
           <QueryErrorBoundary>
-            <Suspense>
-              <SidebarProvider>
-                <AppSidebar />
-                {children}
-                <Toaster richColors />
-              </SidebarProvider>
-            </Suspense>
+            <SidebarProvider>
+              <AppSidebar />
+              {children}
+              <Toaster richColors />
+            </SidebarProvider>
           </QueryErrorBoundary>
         </QueryProvider>
       </body>
