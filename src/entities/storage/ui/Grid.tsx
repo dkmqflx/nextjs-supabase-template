@@ -1,6 +1,9 @@
+import Image from 'next/image';
+
+import { getImageUrl, isImageFile } from '@/shared/lib/images';
 import { formatFileSize } from '@/shared/lib/utils';
 import dayjs from 'dayjs';
-import { FileIcon, ImageIcon, Trash2 } from 'lucide-react';
+import { FileIcon, Trash2 } from 'lucide-react';
 
 import type { FilesType } from '../api/types';
 
@@ -9,20 +12,32 @@ const Grid = ({ files, onDelete }: { files: FilesType[]; onDelete: (storageId: s
     <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
       {files.map((file) => (
         <div key={file.id} className="rounded-lg bg-gray-50 p-4">
-          <div className="mb-2 flex items-start justify-between">
-            {file.storageId.includes('image') ? (
-              <ImageIcon className="mr-3 h-5 w-5 text-gray-400" />
+          <div className="relative mb-4 h-40 w-full">
+            {isImageFile(file.storageId) ? (
+              <Image
+                src={getImageUrl(file.storageId)}
+                alt={file.originalName}
+                fill
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                className="rounded-md object-contain"
+              />
             ) : (
-              <FileIcon className="mr-3 h-5 w-5 text-gray-400" />
+              <div className="flex h-full items-center justify-center">
+                <FileIcon className="h-16 w-16 text-gray-400" />
+              </div>
             )}
-            <button onClick={() => onDelete(file.storageId)} className="text-red-600 hover:text-red-900">
+          </div>
+
+          <div className="flex items-center justify-between">
+            <div className="flex-1 truncate">
+              <p className="truncate text-sm font-medium text-gray-900">{file.originalName}</p>
+              <p className="mt-1 text-xs text-gray-500">{formatFileSize(Number(file.size))}</p>
+              <p className="text-xs text-gray-500">{dayjs(file.lastModified).format('YYYY.MM.DD')}</p>
+            </div>
+            <button onClick={() => onDelete(file.storageId)} className="ml-2 text-red-600 hover:text-red-900">
               <Trash2 className="h-5 w-5" />
             </button>
           </div>
-
-          <p className="truncate text-sm font-medium text-gray-900">{file.originalName}</p>
-          <p className="mt-1 text-xs text-gray-500">{formatFileSize(Number(file.size))}</p>
-          <p className="text-xs text-gray-500"> {dayjs(file.lastModified).format('YYYY.MM.DD')}</p>
         </div>
       ))}
     </div>

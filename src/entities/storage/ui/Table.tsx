@@ -1,3 +1,4 @@
+import { isImageFile } from '@/shared/lib/images';
 import { formatFileSize } from '@/shared/lib/utils';
 import dayjs from 'dayjs';
 import { FileIcon, ImageIcon, Trash2 } from 'lucide-react';
@@ -22,7 +23,7 @@ const Table = ({ files, onDelete }: { files: FilesType[]; onDelete: (storageId: 
             <tr key={file.id}>
               <td className="whitespace-nowrap px-6 py-4">
                 <div className="flex items-center">
-                  {file.storageId.includes('image') ? (
+                  {isImageFile(file.storageId) ? (
                     <ImageIcon className="mr-3 h-5 w-5 text-gray-400" />
                   ) : (
                     <FileIcon className="mr-3 h-5 w-5 text-gray-400" />

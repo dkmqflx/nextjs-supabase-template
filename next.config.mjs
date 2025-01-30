@@ -1,4 +1,14 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {};
+const nextConfig = {
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: process.env.NEXT_SUPABASE_PROJECT_ID,
+        pathname: '/storage/v1/object/public/**',
+      },
+    ],
+  },
+};
 
 export default nextConfig;

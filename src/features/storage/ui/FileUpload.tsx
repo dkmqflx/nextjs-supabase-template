@@ -44,7 +44,7 @@ const FileUpload = () => {
       <input
         {...getInputProps()}
         type="file"
-        accept="image/*,.pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.txt,.rtf,.csv"
+        accept=".jpg, .jpeg, .png, .webp, .svg, .pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.txt,.rtf,.csv"
         multiple
       />
 
