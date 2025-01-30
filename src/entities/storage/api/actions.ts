@@ -20,7 +20,6 @@ const transformToCamelCase = (file: RawFileType): FilesType => ({
 
 // Database Function
 export const getFileMetadata = async (client: TypedSupabaseClient, search: string = ''): Promise<FilesType[]> => {
-  // @ts-expect-error: Supabase RPC type mismatch
   const { data, error } = await client.rpc('search_file_metadata', {
     search_term: search,
   });
