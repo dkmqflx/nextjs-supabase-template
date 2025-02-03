@@ -5,7 +5,7 @@ import { MasonryInfiniteGrid } from '@egjs/react-infinitegrid';
 import { useSuspenseInfiniteQuery } from '@tanstack/react-query';
 
 import { useGetSearchImages } from '../api/quries';
-import Image from './Image';
+import ImageCard from './ImageCard';
 
 const Images = () => {
   const client = useSupabaseBrowserClient();
@@ -38,7 +38,7 @@ const Images = () => {
     >
       {images?.pages.map((page, pageIndex) =>
         page.data.map((image) => (
-          <Image
+          <ImageCard
             key={image.photo_id}
             groupKey={pageIndex}
             ai_description={image.ai_description}
