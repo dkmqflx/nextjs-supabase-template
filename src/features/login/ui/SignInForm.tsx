@@ -8,6 +8,8 @@ import { Input } from '@/shared/ui/input';
 import { Label } from '@/shared/ui/label';
 import { Separator } from '@/shared/ui/separator';
 
+import Kakao from './Kakao';
+
 const SignInForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -93,19 +95,7 @@ const SignInForm = () => {
             Google
           </Button>
 
-          <Button variant="outline" className="w-[48%]" onClick={() => handleSocialLogin()}>
-            <svg
-              className="mr-2 h-4 w-4"
-              aria-hidden="true"
-              focusable="false"
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              fill="currentColor"
-            >
-              <path d="M12 2C6.48 2 2 5.94 2 10.88c0 3.07 1.81 5.8 4.59 7.5l-1.2 3.49a.5.5 0 0 0 .71.61l3.88-2.2c.63.09 1.28.14 1.93.14 5.52 0 10-3.94 10-8.88S17.52 2 12 2z" />
-            </svg>
-            Kakao
-          </Button>
+          <Kakao />
         </CardFooter>
       </Card>
     </main>
