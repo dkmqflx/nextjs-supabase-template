@@ -21,7 +21,9 @@ const InfiniteScrollPage = () => {
 
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
-      <Images />
+      <main className="w-full p-4">
+        <Images />
+      </main>
     </HydrationBoundary>
   );
 };

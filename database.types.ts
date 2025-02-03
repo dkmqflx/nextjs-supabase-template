@@ -35,7 +35,7 @@ export type Database = {
       }
       images: {
         Row: {
-          ai_description: string | null
+          ai_description: string
           ai_primary_landmark_confidence: string | null
           ai_primary_landmark_latitude: string | null
           ai_primary_landmark_longitude: string | null
@@ -52,7 +52,7 @@ export type Database = {
           photo_featured: string | null
           photo_height: number | null
           photo_id: string
-          photo_image_url: string | null
+          photo_image_url: string
           photo_location_city: string | null
           photo_location_country: string | null
           photo_location_latitude: string | null
@@ -68,7 +68,7 @@ export type Database = {
           stats_views: number | null
         }
         Insert: {
-          ai_description?: string | null
+          ai_description: string
           ai_primary_landmark_confidence?: string | null
           ai_primary_landmark_latitude?: string | null
           ai_primary_landmark_longitude?: string | null
@@ -85,7 +85,7 @@ export type Database = {
           photo_featured?: string | null
           photo_height?: number | null
           photo_id: string
-          photo_image_url?: string | null
+          photo_image_url: string
           photo_location_city?: string | null
           photo_location_country?: string | null
           photo_location_latitude?: string | null
@@ -101,7 +101,7 @@ export type Database = {
           stats_views?: number | null
         }
         Update: {
-          ai_description?: string | null
+          ai_description?: string
           ai_primary_landmark_confidence?: string | null
           ai_primary_landmark_latitude?: string | null
           ai_primary_landmark_longitude?: string | null
@@ -118,7 +118,7 @@ export type Database = {
           photo_featured?: string | null
           photo_height?: number | null
           photo_id?: string
-          photo_image_url?: string | null
+          photo_image_url?: string
           photo_location_city?: string | null
           photo_location_country?: string | null
           photo_location_latitude?: string | null
