@@ -15,7 +15,7 @@ const InfiniteScrollPage = () => {
   const client = useSupabaseServerClient(cookieStore);
 
   queryClient.prefetchInfiniteQuery({
-    ...useGetSearchImages({ client, search: '', page: 1, pageSize: 10 }),
+    ...useGetSearchImages({ client, search: '', page: 1, pageSize: 20 }),
     initialPageParam: 1,
   });
 

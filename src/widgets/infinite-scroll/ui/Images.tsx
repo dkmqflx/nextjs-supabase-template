@@ -21,7 +21,7 @@ const Images = () => {
     isFetching,
     isFetchingNextPage,
   } = useSuspenseInfiniteQuery({
-    ...useGetSearchImages({ client, search, page: 1, pageSize: 10 }),
+    ...useGetSearchImages({ client, search, page: 1, pageSize: 20 }),
     initialPageParam: 1,
   });
 
@@ -37,7 +37,7 @@ const Images = () => {
       <MasonryInfiniteGrid
         className="container"
         gap={10}
-        threshold={0.7}
+        threshold={60}
         onRequestPrepend={prefetchNextPage}
         onRequestAppend={prefetchNextPage}
       >
