@@ -8,7 +8,7 @@ const Google = () => {
   const { mutate: signInWithGoogle } = useSignInWithGoogle();
 
   return (
-    <Button variant="outline" className="w-[48%]" onClick={() => signInWithGoogle()}>
+    <Button variant="outline" className="w-full" onClick={() => signInWithGoogle()}>
       <svg
         className="mr-2 h-4 w-4"
         aria-hidden="true"

@@ -12,6 +12,7 @@ import { signInSchema } from '../model/schema';
 import type { SignInSchema } from '../model/schema';
 import Google from './Google';
 import Kakao from './Kakao';
+import Naver from './Naver';
 
 const SignInForm = () => {
   const form = useForm<SignInSchema>({
@@ -84,9 +85,10 @@ const SignInForm = () => {
           </div>
         </CardContent>
 
-        <CardFooter className="flex justify-between">
+        <CardFooter className="flex flex-col gap-3">
           <Google />
           <Kakao />
+          <Naver />
         </CardFooter>
       </Card>
     </main>

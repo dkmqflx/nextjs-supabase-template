@@ -8,7 +8,7 @@ const Kakao = () => {
   const { mutate: signInWithKakao } = useSignInWithKakao();
 
   return (
-    <Button variant="outline" className="w-[48%]" onClick={() => signInWithKakao()}>
+    <Button variant="outline" className="w-full" onClick={() => signInWithKakao()}>
       <svg
         className="mr-2 h-4 w-4"
         aria-hidden="true"
