@@ -4,6 +4,7 @@ import * as React from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
+import { navItems } from '@/shared/constants/navItesm';
 import {
   Sidebar,
   SidebarContent,
@@ -15,14 +16,6 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from '@/shared/ui/sidebar';
-
-const navItems = [
-  { title: 'prefetch', url: '/' },
-  { title: 'error-handling', url: '/error-handling' },
-  { title: 'user', url: '/user' },
-  { title: 'storage', url: '/storage' },
-  { title: 'infinite-scroll', url: '/infinite-scroll' },
-];
 
 const AppSidebar = () => {
   const pathname = usePathname();

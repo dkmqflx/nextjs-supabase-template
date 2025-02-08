@@ -1,6 +1,5 @@
 import { SidebarProvider } from '@/shared/ui/sidebar';
-import { Header } from '@/widgets/layout/ui/Header';
-import { AppSidebar } from '@/widgets/sidebar';
+import { AppSidebar, Header } from '@/widgets/layout';
 
 type MainLayoutProps = {
   children: React.ReactNode;
