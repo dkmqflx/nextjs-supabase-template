@@ -6,6 +6,7 @@ import { Toaster } from '@/shared/ui/sonner';
 import '../globals.css';
 import QueryErrorBoundary from '../providers/QueryErrorBoundary';
 import QueryProvider from '../providers/QueryProvider';
+import { ThemeProvider } from '../providers/ThemeProvider';
 
 const geistSans = localFont({
   src: '../fonts/GeistVF.woff',
@@ -29,11 +30,24 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              try {
+                const savedTheme = localStorage.getItem('theme');
+                const theme = savedTheme || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+                document.documentElement.classList.add(theme);
+              } catch (e) {}
+            `,
+          }}
+        />
+      </head>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <QueryProvider>
           <QueryErrorBoundary>
-            {children}
+            <ThemeProvider>{children}</ThemeProvider>
             <Toaster richColors />
           </QueryErrorBoundary>
         </QueryProvider>
