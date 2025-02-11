@@ -5,21 +5,39 @@ import { useState } from 'react';
 import { Button } from '@/shared/ui/button';
 import { Input } from '@/shared/ui/input';
 import { Textarea } from '@/shared/ui/textarea';
+import { toast } from 'sonner';
+
+import { sendEmail } from '../api/actions';
 
 const FaqForm = () => {
   const [email, setEmail] = useState('');
   const [complaint, setComplaint] = useState('');
   const [characterCount, setCharacterCount] = useState(0);
+  const [isLoading, setIsLoading] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Here you would typically send the email and complaint to your backend
-    console.log('Submitted:', { email, complaint });
-    // Reset form fields
-    setEmail('');
-    setComplaint('');
-    setCharacterCount(0);
-    alert("Your complaint has been submitted. We'll get back to you soon.");
+    setIsLoading(true);
+
+    try {
+      await sendEmail({
+        from: email,
+        subject: 'New FAQ/Complaint Submission',
+        message: complaint,
+      });
+
+      toast.success('Your message has been sent successfully!');
+
+      // Reset form
+      setEmail('');
+      setComplaint('');
+      setCharacterCount(0);
+    } catch (error) {
+      toast.error('Failed to send message. Please try again.');
+      console.error('Email send error:', error);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const handleComplaintChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -29,6 +47,7 @@ const FaqForm = () => {
       setCharacterCount(text.length);
     }
   };
+
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
       <div>
@@ -42,6 +61,7 @@ const FaqForm = () => {
           onChange={(e) => setEmail(e.target.value)}
           placeholder="you@example.com"
           required
+          disabled={isLoading}
         />
       </div>
 
@@ -57,10 +77,13 @@ const FaqForm = () => {
           required
           maxLength={500}
           className="min-h-[200px] resize-none"
+          disabled={isLoading}
         />
         <p className="mt-1 text-sm text-gray-500">{characterCount}/500 characters</p>
       </div>
-      <Button type="submit">Submit</Button>
+      <Button type="submit" disabled={isLoading}>
+        {isLoading ? 'Sending...' : 'Submit'}
+      </Button>
     </form>
   );
 };
