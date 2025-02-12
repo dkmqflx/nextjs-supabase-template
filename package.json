@@ -57,6 +57,7 @@
     "@tanstack/eslint-plugin-query": "^5.62.16",
     "@trivago/prettier-plugin-sort-imports": "^5.2.1",
     "@types/lodash.debounce": "^4.0.9",
+    "@types/navermaps": "^3.7.8",
     "@types/node": "^20",
     "@types/nodemailer": "^6.4.17",
     "@types/react": "^18",

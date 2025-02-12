@@ -4,4 +4,5 @@ export const navItems = [
   { title: 'user', url: '/user' },
   { title: 'storage', url: '/storage' },
   { title: 'infinite-scroll', url: '/infinite-scroll' },
+  { title: 'maps', url: '/maps' },
 ];
