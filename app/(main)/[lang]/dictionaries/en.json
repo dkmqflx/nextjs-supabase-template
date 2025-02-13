@@ -1,0 +1,16 @@
+{
+  "common": {
+    "home": "Home",
+    "gallery": "Gallery",
+    "storage": "Storage",
+    "theme": {
+      "light": "Light",
+      "dark": "Dark",
+      "system": "System"
+    }
+  },
+  "home": {
+    "title": "Welcome",
+    "description": "This is the home page"
+  }
+}

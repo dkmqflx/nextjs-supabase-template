@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useState } from 'react';
 
+import { LanguageSwitch } from '@/features/layout';
 import { ThemeToggle } from '@/features/theme/ui/ThemeToggle';
 import { navItems } from '@/shared/constants/navItesm';
 import { cn } from '@/shared/lib/utils';
@@ -45,6 +46,7 @@ const Header = () => {
         </Sheet>
 
         <div className="flex flex-1 items-center justify-end">
+          <LanguageSwitch />
           <ThemeToggle />
         </div>
       </div>
