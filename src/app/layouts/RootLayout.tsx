@@ -43,6 +43,11 @@ export default function RootLayout({
             `,
           }}
         />
+        <script
+          type="text/javascript"
+          src={`https://oapi.map.naver.com/openapi/v3/maps.js?ncpClientId=${process.env.NEXT_PUBLIC_NAVER_MAP_CLIENT_ID}&submodules=geocoder`}
+          defer
+        ></script>
       </head>
 
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>

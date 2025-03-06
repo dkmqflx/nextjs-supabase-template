@@ -2,8 +2,6 @@
 
 import { useEffect, useRef } from 'react';
 
-const NAVER_MAP_CLIENT_ID = process.env.NEXT_PUBLIC_NAVER_MAP_CLIENT_ID!;
-
 const NaverMap = ({
   address = '불정로 6',
   mapTitle,
@@ -44,12 +42,6 @@ const NaverMap = ({
 
   return (
     <>
-      <script
-        type="text/javascript"
-        src={`https://oapi.map.naver.com/openapi/v3/maps.js?ncpClientId=${NAVER_MAP_CLIENT_ID}&submodules=geocoder`}
-        defer
-      ></script>
-
       <div className="mx-10 my-5 w-full">
         <h1>{mapTitle}</h1>
         <div>{mapDescription}</div>
