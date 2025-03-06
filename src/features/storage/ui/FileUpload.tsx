@@ -55,10 +55,10 @@ const FileUpload = ({ dict }: FileUploadProps) => {
         multiple
       />
 
-      <div className="rounded-lg border-2 border-dashed border-gray-300 p-8 text-center">
-        <Upload className="mx-auto h-12 w-12 text-gray-400" />
-        <p className="mt-4 text-sm text-gray-600">{dict.dragText}</p>
-        <p className="mt-1 text-xs text-gray-500">{dict.supportText}</p>
+      <div className="rounded-lg border-2 border-dashed border-gray-300 p-8 text-center transition-colors hover:bg-gray-50 dark:border-gray-600 dark:hover:bg-gray-700/50">
+        <Upload className="mx-auto h-12 w-12 text-gray-400 dark:text-gray-500" />
+        <p className="mt-4 text-sm text-gray-600 dark:text-gray-300">{dict.dragText}</p>
+        <p className="mt-1 text-xs text-gray-500 dark:text-gray-400">{dict.supportText}</p>
       </div>
     </div>
   );

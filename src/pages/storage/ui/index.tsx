@@ -23,10 +23,10 @@ const StoragePage = async ({ params: { lang } }: { params: { lang: ValidLocale }
 
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
-      <div className="min-h-screen w-full bg-gray-100 p-8">
-        <div className="mx-auto max-w-6xl overflow-hidden rounded-lg bg-white shadow-xl">
+      <div className="min-h-screen w-full bg-gray-100 p-8 dark:bg-gray-900">
+        <div className="mx-auto max-w-6xl overflow-hidden rounded-lg bg-white shadow-xl dark:bg-gray-800 dark:shadow-gray-700/20">
           <div className="p-8">
-            <h1 className="mb-8 text-3xl font-bold text-gray-900">File Management</h1>
+            <h1 className="mb-8 text-3xl font-bold text-gray-900 dark:text-white">{dict.storage.title}</h1>
             <FileUpload dict={dict.storage.upload} />
 
             <FileSearch dict={dict.storage.search} />
