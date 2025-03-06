@@ -59,5 +59,27 @@
   "maps": {
     "title": "지도",
     "description": "네이버 API를 사용한 지도 페이지입니다"
+  },
+  "storage": {
+    "title": "파일 관리",
+    "upload": {
+      "dragText": "파일을 여기에 끌어다 놓거나 찾아보기",
+      "supportText": "다양한 파일 형식을 지원합니다. 최대 파일 크기 10MB."
+    },
+    "search": {
+      "placeholder": "파일 검색...",
+      "listView": "목록 보기",
+      "gridView": "그리드 보기"
+    },
+    "fileList": {
+      "name": "이름",
+      "size": "크기",
+      "type": "유형",
+      "lastModified": "마지막 수정",
+      "actions": "작업",
+      "delete": "삭제",
+      "download": "다운로드",
+      "noFiles": "파일을 찾을 수 없습니다"
+    }
   }
 }

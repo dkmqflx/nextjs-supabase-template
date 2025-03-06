@@ -8,7 +8,20 @@ import { useDeleteFile } from '@/features/storage/api/queries';
 import { useSupabaseBrowserClient } from '@/shared/hooks/useSupabaseBrowserClient';
 import { useSuspenseQuery } from '@tanstack/react-query';
 
-const Files = () => {
+type FilesProps = {
+  dict: {
+    name: string;
+    size: string;
+    type: string;
+    lastModified: string;
+    actions: string;
+    delete: string;
+    download: string;
+    noFiles: string;
+  };
+};
+
+const Files = ({ dict }: FilesProps) => {
   const client = useSupabaseBrowserClient();
   const { viewMode, debouncedSearch } = useStorageStore();
 
@@ -18,9 +31,9 @@ const Files = () => {
   return (
     <div className="flex flex-col">
       {viewMode === VIEW_MODE.LIST ? (
-        <Table files={files} onDelete={deleteFile} />
+        <Table files={files} onDelete={deleteFile} dict={dict} />
       ) : (
-        <Grid files={files} onDelete={deleteFile} />
+        <Grid files={files} onDelete={deleteFile} dict={dict} />
       )}
     </div>
   );

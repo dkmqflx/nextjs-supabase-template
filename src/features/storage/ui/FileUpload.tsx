@@ -8,7 +8,14 @@ import { useDropzone } from 'react-dropzone';
 
 import { useUploadFile } from '../api/queries';
 
-const FileUpload = () => {
+type FileUploadProps = {
+  dict: {
+    dragText: string;
+    supportText: string;
+  };
+};
+
+const FileUpload = ({ dict }: FileUploadProps) => {
   const client = useSupabaseBrowserClient();
 
   const { mutate: uploadFile } = useUploadFile({ client });
@@ -50,8 +57,8 @@ const FileUpload = () => {
 
       <div className="rounded-lg border-2 border-dashed border-gray-300 p-8 text-center">
         <Upload className="mx-auto h-12 w-12 text-gray-400" />
-        <p className="mt-4 text-sm text-gray-600">Drag your files here or browse</p>
-        <p className="mt-1 text-xs text-gray-500">Support for a wide range of file types. Max file size 10MB.</p>
+        <p className="mt-4 text-sm text-gray-600">{dict.dragText}</p>
+        <p className="mt-1 text-xs text-gray-500">{dict.supportText}</p>
       </div>
     </div>
   );

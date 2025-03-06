@@ -7,7 +7,26 @@ import { FileIcon, Trash2 } from 'lucide-react';
 
 import type { FilesType } from '../api/types';
 
-const Grid = ({ files, onDelete }: { files: FilesType[]; onDelete: (storageId: string) => void }) => {
+type GridProps = {
+  files: FilesType[];
+  onDelete: (storageId: string) => void;
+  dict: {
+    name: string;
+    size: string;
+    type: string;
+    lastModified: string;
+    actions: string;
+    delete: string;
+    download: string;
+    noFiles: string;
+  };
+};
+
+const Grid = ({ files, onDelete, dict }: GridProps) => {
+  if (!files.length) {
+    return <p className="text-center text-gray-500">{dict.noFiles}</p>;
+  }
+
   return (
     <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
       {files.map((file) => (
@@ -34,7 +53,12 @@ const Grid = ({ files, onDelete }: { files: FilesType[]; onDelete: (storageId: s
               <p className="mt-1 text-xs text-gray-500">{formatFileSize(Number(file.size))}</p>
               <p className="text-xs text-gray-500">{dayjs(file.lastModified).format('YYYY.MM.DD')}</p>
             </div>
-            <button onClick={() => onDelete(file.storageId)} className="ml-2 text-red-600 hover:text-red-900">
+            <button
+              onClick={() => onDelete(file.storageId)}
+              className="ml-2 text-red-600 hover:text-red-900"
+              title={dict.delete}
+              aria-label={`${dict.delete} ${file.originalName}`}
+            >
               <Trash2 className="h-5 w-5" />
             </button>
           </div>

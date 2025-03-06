@@ -58,5 +58,27 @@
   "maps": {
     "title": "Maps",
     "description": "This is the maps page developed by Naver API"
+  },
+  "storage": {
+    "title": "File Management",
+    "upload": {
+      "dragText": "Drag your files here or browse",
+      "supportText": "Support for a wide range of file types. Max file size 10MB."
+    },
+    "search": {
+      "placeholder": "Search files...",
+      "listView": "List view",
+      "gridView": "Grid view"
+    },
+    "fileList": {
+      "name": "Name",
+      "size": "Size",
+      "type": "Type",
+      "lastModified": "Last Modified",
+      "actions": "Actions",
+      "delete": "Delete",
+      "download": "Download",
+      "noFiles": "No files found"
+    }
   }
 }

@@ -5,16 +5,43 @@ import { FileIcon, ImageIcon, Trash2 } from 'lucide-react';
 
 import type { FilesType } from '../api/types';
 
-const Table = ({ files, onDelete }: { files: FilesType[]; onDelete: (storageId: string) => void }) => {
+type TableProps = {
+  files: FilesType[];
+  onDelete: (storageId: string) => void;
+  dict: {
+    name: string;
+    size: string;
+    type: string;
+    lastModified: string;
+    actions: string;
+    delete: string;
+    download: string;
+    noFiles: string;
+  };
+};
+
+const Table = ({ files, onDelete, dict }: TableProps) => {
+  if (!files.length) {
+    return <p className="text-center text-gray-500">{dict.noFiles}</p>;
+  }
+
   return (
     <div className="overflow-x-auto">
       <table className="min-w-full divide-y divide-gray-200">
         <thead className="bg-gray-50">
           <tr>
-            <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">Name</th>
-            <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">Size</th>
-            <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">Date</th>
-            <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">Actions</th>
+            <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">
+              {dict.name}
+            </th>
+            <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">
+              {dict.size}
+            </th>
+            <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">
+              {dict.lastModified}
+            </th>
+            <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">
+              {dict.actions}
+            </th>
           </tr>
         </thead>
 
@@ -39,7 +66,12 @@ const Table = ({ files, onDelete }: { files: FilesType[]; onDelete: (storageId: 
               </td>
 
               <td className="whitespace-nowrap px-6 py-4 text-right text-sm font-medium">
-                <button onClick={() => onDelete(file.storageId)} className="text-red-600 hover:text-red-900">
+                <button
+                  onClick={() => onDelete(file.storageId)}
+                  className="text-red-600 hover:text-red-900"
+                  title={dict.delete}
+                  aria-label={`${dict.delete} ${file.originalName}`}
+                >
                   <Trash2 className="h-5 w-5" />
                 </button>
               </td>
