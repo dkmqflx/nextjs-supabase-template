@@ -19,6 +19,15 @@ export async function middleware(request: NextRequest) {
   await updateSession(request);
 
   const { pathname } = request.nextUrl;
+
+  // Check if the pathname contains '/user'
+  if (pathname.includes('/user')) {
+    // Redirect to home page
+    const locale = getLocale(request);
+    request.nextUrl.pathname = `/${locale}`;
+    return NextResponse.redirect(request.nextUrl);
+  }
+
   const pathnameHasLocale = locales.some((locale) => pathname.startsWith(`/${locale}/`) || pathname === `/${locale}`);
 
   if (pathnameHasLocale) return;
