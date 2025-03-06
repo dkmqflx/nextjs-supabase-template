@@ -4,7 +4,15 @@ import { useEffect, useRef } from 'react';
 
 const NAVER_MAP_CLIENT_ID = process.env.NEXT_PUBLIC_NAVER_MAP_CLIENT_ID!;
 
-const NaverMap = ({ address = '불정로 6' }: { address: string }) => {
+const NaverMap = ({
+  address = '불정로 6',
+  mapTitle,
+  mapDescription,
+}: {
+  address: string;
+  mapTitle: string;
+  mapDescription: string;
+}) => {
   const mapRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -42,7 +50,12 @@ const NaverMap = ({ address = '불정로 6' }: { address: string }) => {
         defer
       ></script>
 
-      <div className="mx-10 my-5 h-[400px] w-full" ref={mapRef} />
+      <div className="mx-10 my-5 w-full">
+        <h1>{mapTitle}</h1>
+        <div>{mapDescription}</div>
+
+        <div className="my-5 h-[400px] w-full" ref={mapRef} />
+      </div>
     </>
   );
 };

@@ -1,1 +1,1 @@
-export { default as NaverMaps } from './ui/NaverMaps';
+export { default as NaverMapWrapper } from './ui/NaverMapWrapper';

@@ -54,5 +54,9 @@
         "answer": "Once your order ships, you will receive a tracking number via email that you can use to monitor your shipment status."
       }
     ]
+  },
+  "maps": {
+    "title": "Maps",
+    "description": "This is the maps page developed by Naver API"
   }
 }
