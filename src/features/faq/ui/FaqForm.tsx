@@ -9,7 +9,21 @@ import { toast } from 'sonner';
 
 import { sendEmail } from '../api/actions';
 
-const FaqForm = () => {
+type FaqFormProps = {
+  faq: {
+    emailLabel: string;
+    complaintLabel: string;
+    submitButton: string;
+    successMessage: string;
+    errorMessage: string;
+    characterCount: string;
+    sending: string;
+    placeholder: string;
+    emailPlaceholder: string;
+  };
+};
+
+const FaqForm = ({ faq }: FaqFormProps) => {
   const [email, setEmail] = useState('');
   const [complaint, setComplaint] = useState('');
   const [characterCount, setCharacterCount] = useState(0);
@@ -26,14 +40,14 @@ const FaqForm = () => {
         message: complaint,
       });
 
-      toast.success('Your message has been sent successfully!');
+      toast.success(faq.successMessage);
 
       // Reset form
       setEmail('');
       setComplaint('');
       setCharacterCount(0);
     } catch (error) {
-      toast.error('Failed to send message. Please try again.');
+      toast.error(faq.errorMessage);
       console.error('Email send error:', error);
     } finally {
       setIsLoading(false);
@@ -52,14 +66,14 @@ const FaqForm = () => {
     <form onSubmit={handleSubmit} className="space-y-4">
       <div>
         <label htmlFor="email" className="mb-2 block text-sm font-medium">
-          Your Email
+          {faq.emailLabel}
         </label>
         <Input
           type="email"
           id="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          placeholder="you@example.com"
+          placeholder={faq.emailPlaceholder}
           required
           disabled={isLoading}
         />
@@ -67,22 +81,24 @@ const FaqForm = () => {
 
       <div>
         <label htmlFor="complaint" className="mb-2 block text-sm font-medium">
-          Your Question or Complaint
+          {faq.complaintLabel}
         </label>
         <Textarea
           id="complaint"
           value={complaint}
           onChange={handleComplaintChange}
-          placeholder="Please describe your issue or question..."
+          placeholder={faq.placeholder}
           required
           maxLength={500}
           className="min-h-[200px] resize-none"
           disabled={isLoading}
         />
-        <p className="mt-1 text-sm text-gray-500">{characterCount}/500 characters</p>
+        <p className="mt-1 text-sm text-gray-500">
+          {characterCount}/500 {faq.characterCount}
+        </p>
       </div>
       <Button type="submit" disabled={isLoading}>
-        {isLoading ? 'Sending...' : 'Submit'}
+        {isLoading ? faq.sending : faq.submitButton}
       </Button>
     </form>
   );

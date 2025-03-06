@@ -1,0 +1,59 @@
+{
+  "common": {
+    "home": "홈",
+    "gallery": "갤러리",
+    "storage": "저장소",
+    "theme": {
+      "light": "라이트",
+      "dark": "다크",
+      "system": "시스템"
+    }
+  },
+  "home": {
+    "title": "환영합니다",
+    "description": "홈페이지입니다"
+  },
+
+  "faq": {
+    "pageTitle": "자주 묻는 질문",
+    "pageDescription": "서비스에 관한 일반적인 질문에 대한 답변을 찾아보세요",
+    "formTitle": "질문하기",
+    "formDescription": "찾으시는 내용이 없으신가요? 여기에 질문을 제출해주세요.",
+    "nameLabel": "이름",
+    "emailLabel": "이메일 주소",
+    "complaintLabel": "질문 내용",
+    "submitButton": "질문 제출",
+    "successMessage": "질문이 성공적으로 제출되었습니다!",
+    "errorMessage": "질문 제출 중 오류가 발생했습니다. 다시 시도해주세요.",
+    "characterCount": "글자",
+    "sending": "전송 중...",
+    "placeholder": "문제나 질문을 설명해주세요...",
+    "emailPlaceholder": "이메일@예시.com",
+    "categories": {
+      "all": "전체",
+      "product": "제품",
+      "service": "서비스",
+      "billing": "결제",
+      "technical": "기술",
+      "other": "기타"
+    },
+    "faqs": [
+      {
+        "question": "반품 정책은 어떻게 되나요?",
+        "answer": "모든 미사용 제품은 원래 포장 상태로 30일 이내에 반품이 가능합니다."
+      },
+      {
+        "question": "배송은 얼마나 걸리나요?",
+        "answer": "국내 주문은 보통 3-5 영업일, 해외 주문은 7-14일이 소요됩니다."
+      },
+      {
+        "question": "해외 배송도 가능한가요?",
+        "answer": "네, 대부분의 국가로 배송이 가능합니다. 배송 비용과 시간은 목적지에 따라 달라질 수 있습니다."
+      },
+      {
+        "question": "주문을 어떻게 추적할 수 있나요?",
+        "answer": "주문이 발송되면 이메일로 배송 추적 번호를 받게 되며, 이를 통해 배송 상태를 확인할 수 있습니다."
+      }
+    ]
+  }
+}
