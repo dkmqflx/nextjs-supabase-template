@@ -10,7 +10,7 @@ import { useSuspenseInfiniteQuery } from '@tanstack/react-query';
 import { useGetSearchImages } from '../api/quries';
 import ImageCard from './ImageCard';
 
-const Images = () => {
+const Images = ({ dict }: { dict: { infiniteScroll: { search: { placeholder: string } } } }) => {
   const client = useSupabaseBrowserClient();
   const [search, setSearch] = useState('');
 
@@ -33,7 +33,7 @@ const Images = () => {
 
   return (
     <div className="flex-start flex flex-col">
-      <Search onSearch={setSearch} />
+      <Search onSearch={setSearch} dict={dict.infiniteScroll.search} />
       <MasonryInfiniteGrid
         className="container"
         gap={10}

@@ -80,5 +80,10 @@
       "download": "Download",
       "noFiles": "No files found"
     }
+  },
+  "infiniteScroll": {
+    "search": {
+      "placeholder": "Search images..."
+    }
   }
 }
