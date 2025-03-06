@@ -20,8 +20,11 @@ export async function middleware(request: NextRequest) {
 
   const { pathname } = request.nextUrl;
 
-  // Check if the pathname contains '/user'
-  if (pathname.includes('/user')) {
+  // Check if the pathname contains restricted routes
+  const restrictedRoutes = ['/user', '/error-handling'];
+  const isRestrictedRoute = restrictedRoutes.some((route) => pathname.includes(route));
+
+  if (isRestrictedRoute) {
     // Redirect to home page
     const locale = getLocale(request);
     request.nextUrl.pathname = `/${locale}`;
