@@ -1,1 +1,0 @@
-export { PrefetchQuery } from "./ui";
