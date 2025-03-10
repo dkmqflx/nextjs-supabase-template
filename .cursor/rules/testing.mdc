@@ -175,21 +175,5 @@ Based on your Feature-Sliced Design folder structure and installed libraries, he
    });
 ```
 
-## 파일 구조 규칙
-
--  테스트 파일은 __tests__ 폴더 내에 위치합니다.
-
-```shell
-
-src/                  
-    shared/                          
-      lib/
-       __tests__/      
-          utils.test.ts        
-        utils.ts          
-
-```
-
-
 
 
