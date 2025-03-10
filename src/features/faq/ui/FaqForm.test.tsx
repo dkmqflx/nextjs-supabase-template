@@ -290,13 +290,9 @@ describe('FaqForm handleSubmit', () => {
     await user.type(screen.getByLabelText(mockFaq.emailLabel), 'test@example.com');
     await user.type(screen.getByLabelText(mockFaq.complaintLabel), 'This is a test message');
 
-    // Get the form element
-    const form = screen.getByLabelText(mockFaq.emailLabel).closest('form');
-
-    // Manually trigger submit event wrapped in act
-    await act(async () => {
-      form?.dispatchEvent(new Event('submit', { bubbles: true, cancelable: true }));
-    });
+    // Get the submit button and click it instead of manually dispatching an event
+    const submitButton = screen.getByRole('button', { name: mockFaq.submitButton });
+    await user.click(submitButton);
 
     // Verify sendEmail was called
     expect(sendEmail).toHaveBeenCalled();
