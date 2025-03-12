@@ -8,6 +8,16 @@ alwaysApply: false
 
 Based on your Feature-Sliced Design folder structure and installed libraries, here are the testing rules to follow:
 
+- 통합 테스트 코드를 작성할 때 구성된 비즈니스 로직을 적절한 단위로 나눠 컴포넌트 집합을 검증하고  불필요한 불필요한 단위 테스트를 줄인다.
+
+- 비즈니스 로직을 기준으로 통합 테스트를 나눌 때는: 
+  
+  1. 가능한 한 모킹을 하지 않고 실제와 유사하게 검증한다•
+  
+  2. 비즈니스 로직을 처리하는 상태 관리나 API 호출은 상위 컴포넌트에서 테스트 코드를 작성한다.
+  
+  3. 변경 가능성을 고려해 여러 도메인의 기능이 조합된 비즈니스 로직은 나눠 검증한다
+
 ## File Structure
 1. Place test files adjacent to the code they test with .test.ts(x) suffix:
 
