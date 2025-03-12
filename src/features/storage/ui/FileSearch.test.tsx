@@ -1,30 +1,22 @@
+import { VIEW_MODE } from '@/entities/storage/model/store';
+// Import the mocked module
+import { useStorageStore } from '@/entities/storage/model/store';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { vi } from 'vitest';
 
 import FileSearch from './FileSearch';
 
-// Explicitly define mocked store types
-const VIEW_MODE = {
-  LIST: 'list',
-  GRID: 'grid',
-} as const;
-
-// Create mocked store functions
-const mockToggleViewMode = vi.fn();
-const mockSetDebouncedSearch = vi.fn();
-
-// Mocked useStorageStore function
-const mockUseStorageStore = vi.fn();
-
-// Module mocking
-vi.mock('@/entities/storage/model/store', () => ({
-  VIEW_MODE: {
-    LIST: 'list',
-    GRID: 'grid',
-  },
-  useStorageStore: () => mockUseStorageStore(),
-}));
+// Mock the entire module
+vi.mock('@/entities/storage/model/store', () => {
+  return {
+    VIEW_MODE: {
+      LIST: 'list',
+      GRID: 'grid',
+    },
+    useStorageStore: vi.fn(),
+  };
+});
 
 describe('FileSearch', () => {
   const mockDict = {
@@ -33,13 +25,17 @@ describe('FileSearch', () => {
     gridView: 'Grid view',
   };
 
+  // Store state and functions
+  const mockToggleViewMode = vi.fn();
+  const mockSetDebouncedSearch = vi.fn();
+
   beforeEach(() => {
     vi.clearAllMocks();
   });
 
   it('renders search input with correct placeholder', () => {
-    // Set up mocked store return value
-    mockUseStorageStore.mockReturnValue({
+    // Set up store state for this test
+    vi.mocked(useStorageStore).mockReturnValue({
       viewMode: VIEW_MODE.GRID,
       toggleViewMode: mockToggleViewMode,
       debouncedSearch: '',
@@ -53,8 +49,8 @@ describe('FileSearch', () => {
   });
 
   it('updates search value and calls setDebouncedSearch when typing', async () => {
-    // Set up mocked store return value
-    mockUseStorageStore.mockReturnValue({
+    // Set up store state for this test
+    vi.mocked(useStorageStore).mockReturnValue({
       viewMode: VIEW_MODE.GRID,
       toggleViewMode: mockToggleViewMode,
       debouncedSearch: '',
@@ -77,8 +73,8 @@ describe('FileSearch', () => {
   });
 
   it('displays the correct view mode button as active when in LIST mode', () => {
-    // Set up mocked store return value
-    mockUseStorageStore.mockReturnValue({
+    // Set up store state for this test
+    vi.mocked(useStorageStore).mockReturnValue({
       viewMode: VIEW_MODE.LIST,
       toggleViewMode: mockToggleViewMode,
       debouncedSearch: '',
@@ -101,8 +97,8 @@ describe('FileSearch', () => {
   });
 
   it('displays the correct view mode button as active when in GRID mode', () => {
-    // Set up mocked store return value
-    mockUseStorageStore.mockReturnValue({
+    // Set up store state for this test
+    vi.mocked(useStorageStore).mockReturnValue({
       viewMode: VIEW_MODE.GRID,
       toggleViewMode: mockToggleViewMode,
       debouncedSearch: '',
@@ -125,8 +121,8 @@ describe('FileSearch', () => {
   });
 
   it('calls toggleViewMode when view mode buttons are clicked', async () => {
-    // Set up mocked store return value
-    mockUseStorageStore.mockReturnValue({
+    // Set up store state for this test
+    vi.mocked(useStorageStore).mockReturnValue({
       viewMode: VIEW_MODE.GRID,
       toggleViewMode: mockToggleViewMode,
       debouncedSearch: '',
@@ -150,8 +146,8 @@ describe('FileSearch', () => {
   });
 
   it('initializes search input with debouncedSearch value from store', () => {
-    // Set up mocked store return value
-    mockUseStorageStore.mockReturnValue({
+    // Set up store state for this test
+    vi.mocked(useStorageStore).mockReturnValue({
       viewMode: VIEW_MODE.GRID,
       toggleViewMode: mockToggleViewMode,
       debouncedSearch: 'initial search',
@@ -165,8 +161,8 @@ describe('FileSearch', () => {
   });
 
   it('clears search input correctly', async () => {
-    // Set up mocked store return value
-    mockUseStorageStore.mockReturnValue({
+    // Set up store state for this test
+    vi.mocked(useStorageStore).mockReturnValue({
       viewMode: VIEW_MODE.GRID,
       toggleViewMode: mockToggleViewMode,
       debouncedSearch: 'initial search',
