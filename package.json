@@ -9,7 +9,7 @@
     "lint": "next lint",
     "prepare": "husky",
     "ui": "pnpm dlx shadcn@latest add",
-    "generate-types": "npx supabase gen types typescript --project-id lpsmxngkcnvhqzcmfmnq --schema public > database.types.ts",
+    "generate-types": "npx supabase gen types typescript --project-id lpsmxngkcnvhqzcmfmnq --schema public > src/shared/types/database.ts",
     "test": "vitest run",
     "test:watch": "vitest watch",
     "test:coverage": "vitest run --coverage"

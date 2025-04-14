@@ -1,4 +1,4 @@
-import { Database } from 'database.types';
+import { Database } from '@/shared/types/database';
 
 export type User = Database['public']['Tables']['user']['Row'];
 export type InsertUser = Database['public']['Tables']['user']['Insert'];

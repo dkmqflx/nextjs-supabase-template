@@ -1,4 +1,4 @@
-import { Database } from 'database.types';
+import { Database } from '@/shared/types/database';
 
 export type FilesType = Database['public']['Tables']['file_metadata']['Row'];
 export type insertFilesType = Database['public']['Tables']['file_metadata']['Insert'];
