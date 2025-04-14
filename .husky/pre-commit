@@ -2,4 +2,4 @@
 
 echo "🚦 Checks linting before committing."
 
-npx lint-staged
+pnpx lint-staged
