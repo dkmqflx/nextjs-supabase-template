@@ -1,12 +1,12 @@
 ---
-description: code convention
+description: Code Convention
 globs: 
 alwaysApply: false
 ---
-- 아래는 지켜야할 코드 컨벤션이야 
+- These are the code conventions that should be followed
 
 
-- Boolean 의 경우에는 is Prefix를 기본적으로 사용하지만, has 등도 상황에 따라 허용합니다.
+- For Boolean values, use the 'is' prefix as a basic rule, but 'has' and others are also allowed depending on the situation.
 
 ```ts
 
@@ -29,7 +29,7 @@ const Component = () => {
 
 ```
 
-- 배열의 경우 Postfix로 -s 를 추가해서 변수명을 작성합니다.
+- For arrays, add the postfix '-s' to variable names.
 
 ```ts
 // Good
@@ -39,7 +39,7 @@ const itemArr = [ ... ];
 const itemList = [ ... ];
 ```
 
-- React Component를 정의한 변수는 PascalCase로 정의합니다.
+- Define React Component variables using PascalCase.
 
 ```ts
 // Good
@@ -60,7 +60,7 @@ const fileCard = () => {
 ```
 
 
-- Type을 정의한 변수는 PascalCase로 정의합니다.
+- Define Type variables using PascalCase.
 
 ```ts
 
@@ -70,31 +70,31 @@ export type User = 'string'
 export type user = 'string'
 ```
 
-- React Component와 Type을 제외한 나머지는 변수명은 camelCase로 정의합니다.
+- Define all variables other than React Components and Types using camelCase.
 ```ts
 
 // Good
-export const passwordSchema = z.string().min(1, { message: '비밀번호를 입력해주세요' });
+export const passwordSchema = z.string().min(1, { message: 'Please enter your password' });
 // Bad
-export const PasswordSchema = z.string().min(1, { message: '비밀번호를 입력해주세요' });
+export const PasswordSchema = z.string().min(1, { message: 'Please enter your password' });
  ```
 
-- 영어로 정의 했을 때 어색하거나 이해하기 어려운 경우에는 한글 변수명을 사용합니다
+- Use Korean variable names when English definitions would be awkward or difficult to understand
 ```ts
-const 결제_내역 = 'hisgory';
-const 코인_충전 = 'coin';
+const paymentHistory = 'history';
+const coinCharge = 'coin';
  
 ```
 
-- 상수는 대문자로 컴포넌트 상단에 정의해줍니다
+- Define constants in uppercase at the top of the component
 ```ts
-const AUTH = '인증'
+const AUTH = 'Authentication'
 function Component(){
 }
 ```
 
 
-- React Component를 정의한 파일의 이름은 PascalCase로 정의합니다.
+- Define React Component file names using PascalCase.
 ```shell
 
 // Good
@@ -107,7 +107,7 @@ function Component(){
 
 
 
-- 조건문의 경우 if else 패턴보다는 early return으로 처리합니다. (no-else-return)
+- For conditionals, use early return instead of if-else patterns. (no-else-return)
 ```ts
 // Good
 const execExample = () => {
@@ -127,7 +127,7 @@ const execExample = () => {
  
 ```
 
-- 삼항연산자의 경우, 중첩되지 않게 사용하도록 합니다.(no-nested-ternary)
+- For ternary operators, avoid nesting them. (no-nested-ternary)
 ```ts
 // Good
 const isExample = a ? b : c; 
@@ -145,16 +145,16 @@ const isExample2 = a ? b : c ? d : e;
 ```
 
 
-- 숫자 값을 직접 정의할 경우 천 단위마다 _를 사용하여 구분합니다. 
+- When defining numeric values directly, use '_' to separate thousands.
 ```ts
 // Good
-const num = 10_000; // `_`를  1000 단위로 사용하여 구분합니다.
+const num = 10_000; // Use '_' to separate by 1000 units
 // Bad
-const num = 10000; // 1000 단위로 구분합니다.
+const num = 10000; // No separation by 1000 units
 ```
 
 
-- 인라인 함수는 가능한 사용하지 않습니다.
+- Avoid using inline functions when possible.
 ```tsx
 // Good
 const Component = () => {
@@ -179,10 +179,10 @@ const Component = () => {
 }
 ```
 
-- useMemo useCallback은 성능 이슈로 인해 최적화가 필요한 경우에만 사용합니다.
+- Use useMemo and useCallback only when optimization is needed due to performance issues.
 
 
-- 기본적으로 화살표 함수를 사용해서 함수를 정의합니다.
+- Use arrow functions as the default way to define functions.
 ```ts
 // Good
 const foo = () => {
@@ -194,7 +194,7 @@ function foo() {
 }
 ```
 
-- React Component를 return 하지 않는 경우에는 .ts확장자로 파일을 정의합니다.
+- Use .ts extension for files that don't return React Components.
 
 ```tsx
 // Good - useHook.ts
@@ -215,7 +215,7 @@ const useHook = () => {
 }
 ```
 
-- boolean 값이 true인 경우 props로 전달할 때 true를 생략합니다.
+- Omit the value 'true' when passing boolean props.
 ```tsx
 // Good 
 const Component = () => {
@@ -231,7 +231,7 @@ const Component = () => {
 }
 ```
 
-- children이 없는 컴포넌트는 Self-Closing 태그를 사용합니다.
+- Use Self-Closing tags for components without children.
 
 ```tsx
 // Good
@@ -244,7 +244,7 @@ function Component(){
 }
 ```
 
-- Props로 함수를 전달할 때는 on- prefix를 사용하고,  Props로 전달하지 않고 함수를 선언한 컴포넌트에서 실행하는 경우에는 handle- prefix를 사용합니다.
+- Use 'on-' prefix for functions passed as props, and 'handle-' prefix for functions that are executed within the component where they are declared.
 
 ```tsx
 // Good
@@ -272,7 +272,7 @@ const Component = () => {
 ```
  
 
-- props type의 경우에는 컴포넌트 상단에 정의합니다.
+- Define props types at the top of the component.
 ```tsx
 // Good
 type propsType = {
@@ -290,7 +290,7 @@ function component({foo, bar}:propsType){
 ```
 
 
-- 타입스크립트 요청 / 응답의 경우 Request / Response를 suffix로 합니다.
+- For TypeScript request/response types, use 'Request'/'Response' as a suffix.
 ```ts
 // Good
 type ApiFooRequest = {
@@ -305,7 +305,7 @@ type ApiBazRequestDto = {
 }
 ```
 
-- 타입스크립트의 API 요청 / 응답 값은 알파벳 순으로 정의합니다.
+- Define TypeScript API request/response values in alphabetical order.
 ```ts
 // Good
 type ApiFooRequest = {
@@ -326,16 +326,16 @@ type ApiFooRequest = {
 }
 ```
 
-- 객체 타입의 값이 복잡한 경우 TSDoc으로 주석을 추가해줍니다.
+- Add TSDoc comments for complex object types.
 ```ts
 type ComplexType = {
-  /** 고유 번호 */
+  /** Unique ID */
   id: number;
   ...
 }
 ```
 
-- 타입을 정의할 때 타입의 이름이 다른 변수명이 겹치는 경우, Type Suffix를 붙여줍니다.
+- When a type name conflicts with another variable name, add 'Type' suffix.
 ```ts
 // Good
 export type ButtonProps = {
@@ -349,7 +349,7 @@ export type TButtonProps = {
 }
 ```
 
-- 타입을 정의하는 파일은 type 키워드를 통해서 export, import 합니다 `(Type-Only Imports and Exports)`
+- Import and export types using the 'type' keyword (`Type-Only Imports and Exports`).
 ```ts
 // Good
 import type { SomethingType } from "xxx.type"
@@ -357,7 +357,7 @@ import type { SomethingType } from "xxx.type"
 import { SomethingType } from "xxx.type"
 ```
 
-- 페이지 이름의 경우 kebab-case를 사용합니다.
+- Use kebab-case for page names.
 ```shell
 // Good
 ├── app
