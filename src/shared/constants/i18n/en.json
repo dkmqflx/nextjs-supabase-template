@@ -13,6 +13,20 @@
     "title": "Welcome",
     "description": "This is the home page"
   },
+  "pages": {
+    "user": {
+      "title": "User",
+      "description": "Manage your profile and settings"
+    },
+    "infiniteScroll": {
+      "title": "Infinite Scroll",
+      "description": "Image gallery with infinite scroll functionality"
+    },
+    "errorHandling": {
+      "title": "Error Handling",
+      "description": "Demonstrates various error handling scenarios"
+    }
+  },
   "faq": {
     "pageTitle": "Frequently Asked Questions",
     "pageDescription": "Find answers to common questions about our services",
