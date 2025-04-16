@@ -1,3 +1,5 @@
+[![CI](https://github.com/dkmqflx/nextjs-supabase-template/actions/workflows/ci.yml/badge.svg)](https://github.com/dkmqflx/nextjs-supabase-template/actions/workflows/ci.yml)
+
 # Next.js Boilerplate
 
 A modern Next.js 14 boilerplate with App Router, featuring internationalization, Supabase integration, and various UI components.
