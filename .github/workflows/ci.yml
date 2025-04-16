@@ -29,7 +29,6 @@ jobs:
 
       # Naver Maps
       NEXT_PUBLIC_NAVER_MAP_CLIENT_ID: ${{ secrets.NEXT_PUBLIC_NAVER_MAP_CLIENT_ID }}
-      NODE_ENV: production
 
     steps:
       - uses: actions/checkout@v4
@@ -56,10 +55,12 @@ jobs:
             ${{ runner.os }}-pnpm-store-
 
       - name: Install dependencies
-        run: pnpm install --frozen-lockfile
+        run: pnpm install --frozen-lockfile --include=dev
 
       - name: Run tests
         run: pnpm test
 
       - name: Build
+        env:
+          NODE_ENV: production
         run: pnpm build
