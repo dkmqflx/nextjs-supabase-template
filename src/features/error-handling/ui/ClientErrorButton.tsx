@@ -1,13 +1,14 @@
-"use client";
+'use client';
 
-import { Button } from "@/shared/ui/button";
-import { useRequestClientError } from "../api/error-handling-query";
+import { Button } from '@/shared/ui/button';
+
+import { useRequestClientError } from '../api/error-handling-query';
 
 const ClientErrorButton = () => {
   const { mutate } = useRequestClientError();
 
   const handleClick = () => {
-    throw new Error("This is a test error");
+    throw new Error('This is a test error');
   };
 
   return (

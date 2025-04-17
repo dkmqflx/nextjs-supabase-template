@@ -1,7 +1,4 @@
-import {
-  ClientErrorButton,
-  ServerErrorButton,
-} from "@/features/error-handling/indes";
+import { ClientErrorButton, ServerErrorButton } from '@/features/error-handling/indes';
 
 const ErrorHandling = () => {
   return (

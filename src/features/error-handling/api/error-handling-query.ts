@@ -1,13 +1,10 @@
-import { useSuspenseQuery, useMutation } from "@tanstack/react-query";
-import {
-  getClientError,
-  requestClientError,
-  requestServerError,
-} from "./error-handling";
+import { useMutation, useSuspenseQuery } from '@tanstack/react-query';
+
+import { getClientError, requestClientError, requestServerError } from './error-handling';
 
 export const useGetClientError = () => {
   return useSuspenseQuery({
-    queryKey: ["error"],
+    queryKey: ['error'],
     queryFn: getClientError,
   });
 };
