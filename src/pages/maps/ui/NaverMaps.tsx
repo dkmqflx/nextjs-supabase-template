@@ -10,9 +10,6 @@ import { useEffect, useRef } from 'react';
 /* eslint-disable */
 // @ts-nocheck
 
-/* eslint-disable */
-// @ts-nocheck
-
 const NaverMap = ({
   address = '불정로 6',
   mapTitle,

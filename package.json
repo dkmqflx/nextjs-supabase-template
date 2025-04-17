@@ -12,11 +12,16 @@
     "generate-types": "npx supabase gen types typescript --project-id lpsmxngkcnvhqzcmfmnq --schema public > src/shared/types/database.ts",
     "test": "vitest run",
     "test:watch": "vitest watch",
-    "test:coverage": "vitest run --coverage"
+    "test:coverage": "vitest run --coverage",
+    "format:check": "prettier --check \"src/**/*.{ts,tsx,js,jsx,json,css,md}\""
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
+      "prettier --write",
       "eslint --fix --cache"
+    ],
+    "*.{json,css,md}": [
+      "prettier --write"
     ]
   },
   "dependencies": {

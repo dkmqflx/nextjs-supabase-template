@@ -1,3 +1,19 @@
-# Ignore artifacts:
+# Build output
+.next
+dist
 build
+
+# Dependencies
+node_modules
+
+# Ignore src/shared/ui directory
+src/shared/ui
+src/shared/ui/**/*
+
+# Ignore specific files
+
+# eslint and typescript disabled line is copied when it is saved
+src/pages/maps/ui/NaverMaps.tsx 
+
+# Ignore artifacts:
 coverage
