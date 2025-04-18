@@ -28,7 +28,7 @@ const AppSidebar = () => {
             <SidebarMenuButton size="lg" asChild>
               <Link href="/">
                 <div className="flex flex-col gap-0.5 leading-none">
-                  <span className="font-semibold">Boilerplate</span>
+                  <span className="font-semibold">Template</span>
                 </div>
               </Link>
             </SidebarMenuButton>
