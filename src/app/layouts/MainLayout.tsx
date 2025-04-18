@@ -1,20 +1,14 @@
 import { SidebarProvider } from '@/shared/ui/sidebar';
 import { AppSidebar, Header } from '@/widgets/layout';
 
-type MainLayoutProps = {
-  children: React.ReactNode;
-};
-
-export default function MainLayout({ children }: MainLayoutProps) {
+export default function MainLayout({ children }: { children: React.ReactNode }) {
   return (
-    <div className="relative flex min-h-screen flex-col">
-      <main className="flex-1">
+    <SidebarProvider>
+      <AppSidebar />
+      <main>
         <Header />
-        <SidebarProvider>
-          <AppSidebar />
-          {children}
-        </SidebarProvider>
+        {children}
       </main>
-    </div>
+    </SidebarProvider>
   );
 }

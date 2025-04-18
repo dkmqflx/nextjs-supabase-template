@@ -41,7 +41,7 @@ export default async function Home({ params: { lang } }: { params: { lang: strin
   ];
 
   return (
-    <div className="min-h-screen bg-background p-8">
+    <div className="bg-background p-8">
       <div className="mx-auto max-w-4xl">
         <h1 className="mb-8 text-4xl font-bold">{dict.home.title}</h1>
         <p className="mb-8 text-lg text-muted-foreground">{dict.home.description}</p>

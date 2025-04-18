@@ -45,7 +45,7 @@ const Header = () => {
           </SheetContent>
         </Sheet>
 
-        <div className="flex flex-1 items-center justify-end">
+        <div className="flex flex-1 items-center justify-end pr-2">
           <LanguageSwitch />
           <ThemeToggle />
         </div>
