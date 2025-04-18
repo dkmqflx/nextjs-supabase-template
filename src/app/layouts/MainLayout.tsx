@@ -5,10 +5,10 @@ export default function MainLayout({ children }: { children: React.ReactNode }) 
   return (
     <SidebarProvider>
       <AppSidebar />
-      <main>
+      <div className="flex-1">
         <Header />
-        {children}
-      </main>
+        <main className="max-w-screen-xl">{children}</main>
+      </div>
     </SidebarProvider>
   );
 }
