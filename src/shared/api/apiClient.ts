@@ -57,7 +57,11 @@ export class ApiClient {
     return this.handleResponse<T>(response);
   }
 
-  public get<T>(endpoint: string, queryParams?: Record<string, string | number | boolean>, options?: RequestInit) {
+  public get<T>(
+    endpoint: string,
+    queryParams?: Record<string, string | number | boolean>,
+    options?: RequestInit,
+  ): Promise<BaseResponse<T>> {
     return this.request<T>('GET', endpoint, options, undefined, queryParams);
   }
 
@@ -65,19 +69,23 @@ export class ApiClient {
     endpoint: string,
     body: TData,
     options?: RequestInit,
-  ) {
+  ): Promise<BaseResponse<T>> {
     return this.request<T>('POST', endpoint, options, body);
   }
 
-  public put<T, TData extends Record<string, unknown>>(endpoint: string, body: TData, options?: RequestInit) {
+  public put<T, TData extends Record<string, unknown>>(
+    endpoint: string,
+    body: TData,
+    options?: RequestInit,
+  ): Promise<BaseResponse<T>> {
     return this.request<T>('PUT', endpoint, options, body);
   }
 
-  public delete<T>(endpoint: string, options?: RequestInit) {
+  public delete<T>(endpoint: string, options?: RequestInit): Promise<BaseResponse<T>> {
     return this.request<T>('DELETE', endpoint, options);
   }
 }
 
-const apiClientInstance = new ApiClient(BASE_URL);
+const apiClient = new ApiClient(BASE_URL);
 
-export default apiClientInstance;
+export default apiClient;
