@@ -16,9 +16,10 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from '@/shared/ui/sidebar';
+import { ChevronDown } from 'lucide-react';
 
 const AppSidebar = () => {
-  const pathname = usePathname();
+  const pathname = usePathname() ?? '/';
 
   return (
     <Sidebar>
@@ -42,11 +43,32 @@ const AppSidebar = () => {
           <SidebarGroupContent>
             <SidebarMenu>
               {navItems.map((item) => (
-                <SidebarMenuItem key={item.url}>
-                  <SidebarMenuButton asChild isActive={pathname === item.url}>
-                    <Link href={item.url}>{item.title}</Link>
-                  </SidebarMenuButton>
-                </SidebarMenuItem>
+                <React.Fragment key={item.url}>
+                  <SidebarMenuItem>
+                    <SidebarMenuButton asChild isActive={pathname === item.url || pathname.startsWith(item.url + '/')}>
+                      {!!item.url ? (
+                        <Link href={item.url} className="flex w-full items-center justify-between">
+                          {item.title}
+                          {item.items && <ChevronDown className="h-4 w-4" />}
+                        </Link>
+                      ) : (
+                        <div className="flex w-full items-center justify-between">{item.title}</div>
+                      )}
+                    </SidebarMenuButton>
+                  </SidebarMenuItem>
+
+                  {item.items && (
+                    <div className="ml-4">
+                      {item.items.map((subItem) => (
+                        <SidebarMenuItem key={subItem.url}>
+                          <SidebarMenuButton asChild isActive={pathname === subItem.url}>
+                            <Link href={subItem.url}>{subItem.title}</Link>
+                          </SidebarMenuButton>
+                        </SidebarMenuItem>
+                      ))}
+                    </div>
+                  )}
+                </React.Fragment>
               ))}
             </SidebarMenu>
           </SidebarGroupContent>
