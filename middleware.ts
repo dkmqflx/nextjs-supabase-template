@@ -15,10 +15,23 @@ const getLocale = (request: NextRequest): string => {
   return match(languages, localeList, defaultLocale);
 };
 
+// Check if the path is a route handler (ends with /route)
+const isRouteHandler = (pathname: string): boolean => {
+  // Remove query parameters for checking
+  const path = pathname.split('?')[0];
+  // Check if it's an API route or ends with a segment that would match a route.ts file
+  return path.includes('/api/') || path.split('/').pop() === 'posts';
+};
+
 export async function middleware(request: NextRequest) {
   await updateSession(request);
 
   const { pathname } = request.nextUrl;
+
+  // Skip locale redirect for route handlers
+  if (isRouteHandler(pathname)) {
+    return NextResponse.next();
+  }
 
   // Check if the pathname contains restricted routes
   const restrictedRoutes = ['/user', '/error-handling'];
