@@ -1,0 +1,33 @@
+# Add 'feature' label if feat branch is used
+feature:
+  - head-branch: ['feat']
+
+# Add 'bug' label if hotfix or fix branch is used
+bug:
+  - head-branch: ['hotfix', 'fix']
+
+# Add 'release' label if main branch is used
+release:
+  - base-branch: 'main'
+
+# Add 'documentation' label to any changes in docs or markdown files
+documentation:
+  - docs/**/*
+  - '**/*.md'
+
+# Add 'dependencies' label to any changes in package files
+dependencies:
+  - package.json
+  - pnpm-lock.yaml
+
+# Add 'test' label to any change to test files
+test:
+  - '**/*.test.ts'
+  - '**/*.test.tsx'
+  - '**/*.spec.ts'
+  - '**/*.spec.tsx'
+
+# Add 'approved' label when PR is approved
+approved:
+  - any: ['**/*']
+    condition: approved
