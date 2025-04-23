@@ -4,13 +4,13 @@ import { SearchContainer, postQueries } from '@/features/prefetch';
 import { getQueryClient } from '@/shared/lib/get-query-client';
 import { HydrationBoundary, dehydrate } from '@tanstack/react-query';
 
-export const PrefetchPage = async () => {
+export const PrefetchPage = () => {
   // Create a QueryClient instance for server-side use
   const queryClient = getQueryClient();
 
   // Prefetch initial data on the server and store it in the cache
   // Load initial data by searching with an empty string
-  await queryClient.prefetchQuery(postQueries.search(''));
+  queryClient.prefetchQuery(postQueries.search(''));
 
   // Serialize the QueryClient cache state
   // This state will be sent to the client and used for initial rendering

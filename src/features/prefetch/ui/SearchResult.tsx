@@ -1,10 +1,10 @@
 import React from 'react';
 
 import { type Post, postQueries } from '@/features/prefetch';
-import { useQuery } from '@tanstack/react-query';
+import { useSuspenseQuery } from '@tanstack/react-query';
 
 export const SearchResult = ({ searchQuery }: { searchQuery: string }) => {
-  const { data: posts } = useQuery(postQueries.search(searchQuery));
+  const { data: posts } = useSuspenseQuery(postQueries.search(searchQuery));
 
   return (
     <div className="space-y-4">
