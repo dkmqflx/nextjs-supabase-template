@@ -3,8 +3,12 @@ feature:
   - head-branch: ['feat']
 
 # Add 'bug' label if hotfix or fix branch is used
-bug:
+fix:
   - head-branch: ['hotfix', 'fix']
+
+# Add 'test' label if test branch is used
+test:
+  - head-branch: ['test']
 
 # Add 'release' label if main branch is used
 release:
@@ -12,15 +16,13 @@ release:
 
 # Add 'documentation' label to any changes in docs or markdown files
 documentation:
-  - any: ['docs/**/*', '**/*.md']
+  - changed-files:
+      - any-glob-to-any-file: ['docs/**/*', '**/*.md']
 
 # Add 'dependencies' label to any changes in package files
 dependencies:
-  - any: ['package.json', 'pnpm-lock.yaml']
-
-# Add 'test' label to any change to test files
-test:
-  - any: ['**/*.test.ts', '**/*.test.tsx', '**/*.spec.ts', '**/*.spec.tsx']
+  - changed-files:
+      - any-glob-to-any-file: ['package.json', 'pnpm-lock.yaml']
 
 # Add 'approved' label when PR is approved
 approved:
