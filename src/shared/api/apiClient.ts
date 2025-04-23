@@ -50,6 +50,7 @@ export class ApiClient {
         'Content-Type': 'application/json',
         ...options?.headers,
       },
+      cache: 'no-store',
       body: body ? JSON.stringify(body) : undefined,
       ...options,
     });
