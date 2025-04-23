@@ -12,20 +12,15 @@ release:
 
 # Add 'documentation' label to any changes in docs or markdown files
 documentation:
-  - docs/**/*
-  - '**/*.md'
+  - any: ['docs/**/*', '**/*.md']
 
 # Add 'dependencies' label to any changes in package files
 dependencies:
-  - package.json
-  - pnpm-lock.yaml
+  - any: ['package.json', 'pnpm-lock.yaml']
 
 # Add 'test' label to any change to test files
 test:
-  - '**/*.test.ts'
-  - '**/*.test.tsx'
-  - '**/*.spec.ts'
-  - '**/*.spec.tsx'
+  - any: ['**/*.test.ts', '**/*.test.tsx', '**/*.spec.ts', '**/*.spec.tsx']
 
 # Add 'approved' label when PR is approved
 approved:
