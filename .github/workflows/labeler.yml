@@ -10,7 +10,10 @@ jobs:
       contents: read
       pull-requests: write
     runs-on: ubuntu-latest
+
     steps:
+      - uses: actions/checkout@v4
+
       - name: Label to Pull Request
         uses: actions/labeler@v5
         with:
