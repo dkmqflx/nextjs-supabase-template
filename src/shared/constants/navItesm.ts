@@ -16,6 +16,7 @@ export const navItems: NavItem[] = [
     items: [
       { title: 'useQuery', url: '/data-fetching/use-query' },
       { title: 'useSuspenseQuery', url: '/data-fetching/use-suspense-query' },
+      { title: 'prefetch', url: '/data-fetching/prefetch' },
     ],
   },
 ];
